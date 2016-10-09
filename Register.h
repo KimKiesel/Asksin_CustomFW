@@ -20,7 +20,12 @@
 //- settings of HM device for HM class -------------------------------------------------------------------------------------
 const uint8_t devParam[] PROGMEM = {
 	/* Firmware version 1 byte */  0x16,									// don't know for what it is good for
+#if defined(HM_LC_Sw1PBU_FM)
+	/* Model ID	        2 byte */  0xF0, 0xA9,	//0x00, 0x6C							// model ID, describes HM hardware. we should use high values due to HM starts from 0
+#endif
+#if defined(HM_LC_Sw2PBU_FM)
 	/* Model ID	        2 byte */  0xF0, 0xB0,	//0x00, 0x6C							// model ID, describes HM hardware. we should use high values due to HM starts from 0
+#endif
 	/* Serial ID       10 byte */  'N','E','Q','0','9','2','7','9','4','3', // serial ID, needed for pairing
 	/* Sub Type ID      1 byte */  0x10,									// not needed for FHEM, it's something like a group ID
 	/* Device Info      3 byte */  0x41, 0x01, 0x00							// describes device, not completely clear yet. includes amount of channels
